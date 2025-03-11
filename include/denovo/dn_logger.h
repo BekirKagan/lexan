@@ -18,6 +18,10 @@
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 #ifdef _DEBUG
 #define DN_LOG_DEBUG(fmt, ...) dn_logger_log(DN_LOG_LEVEL_DEBUG, fmt, ##__VA_ARGS__)
 #else
@@ -40,3 +44,7 @@ typedef enum DN_LogLevel {
 void dn_logger_init();
 void dn_logger_deinit();
 void dn_logger_log(DN_LogLevel lvl, const char* fmt, ...);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
