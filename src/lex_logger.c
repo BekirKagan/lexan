@@ -1,5 +1,5 @@
 /*
- *   dn_logger.c - A lightweight C logging library with color-coded output and simple macros.
+ *   lex_logger.c - A lightweight C logging library with color-coded output and simple macros.
  *   Copyright (C) 2025 Bekir Kağan Karaahmetoğlu <kagankaraahmetoglu@hotmail.com>
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <denovo/dn_logger.h>
+#include <lexan/lex_logger.h>
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -38,7 +38,7 @@ static const char* const COLORS[5] = {
     "\x1b[1;31m", // FATAL
 };
 
-void dn_logger_log(DN_LogLevel lvl, const char* fmt, ...) {
+void lex_logger_log(LEX_LogLevel lvl, const char* fmt, ...) {
     const char* color = COLORS[lvl];
     const char* level = LEVELS[lvl];
 
@@ -58,7 +58,7 @@ void dn_logger_log(DN_LogLevel lvl, const char* fmt, ...) {
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-void dn_logger_init() {
+void lex_logger_init() {
     DWORD mode = 0;
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     GetConsoleMode(handle, &mode);
@@ -66,7 +66,7 @@ void dn_logger_init() {
     SetConsoleMode(handle, mode);
 }
 
-void dn_logger_deinit() {
+void lex_logger_deinit() {
     DWORD mode = 0;
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     GetConsoleMode(handle, &mode);
@@ -74,10 +74,10 @@ void dn_logger_deinit() {
     SetConsoleMode(handle, mode);
 }
 #else
-void dn_logger_init() {
-    DN_LOG_INFO("%s\n", "The dn_logger_init() function is only needed on Windows.");
+void lex_logger_init() {
+    LEX_LOG_INFO("%s\n", "The lex_logger_init() function is only needed on Windows.");
 }
-void dn_logger_deinit() {
-    DN_LOG_INFO("%s\n", "The dn_logger_deinit() function is only needed on Windows.");
+void lex_logger_deinit() {
+    LEX_LOG_INFO("%s\n", "The lex_logger_deinit() function is only needed on Windows.");
 }
 #endif // _WIN32

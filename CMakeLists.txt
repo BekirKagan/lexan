@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.31)
-project(denovo-logger LANGUAGES C VERSION 0.1.0)
+project(lexan LANGUAGES C VERSION 0.1.0)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
-option(DN_BUILD_EXAMPLES "Build the examples." OFF)
+option(LEX_BUILD_EXAMPLES "Build the examples." OFF)
 
-if(DN_BUILD_EXAMPLES)
+if(LEX_BUILD_EXAMPLES)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
 endif()
 
@@ -17,7 +17,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall -Wextra -Werror)
 
 target_sources(${PROJECT_NAME} PRIVATE
-    ${PROJECT_SOURCE_DIR}/src/dn_logger.c)
+    ${PROJECT_SOURCE_DIR}/src/lex_logger.c)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${PROJECT_SOURCE_DIR}/include)
